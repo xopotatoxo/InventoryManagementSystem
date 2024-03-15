@@ -35,7 +35,6 @@ foreign key (Supplies_by) REFERENCES MANAGERS(managers_id),
 FOREIGN KEY (Request_by) REFERENCES MANAGERS(managers_id)
 );
 
-
 CREATE TABLE REQUEST(
 Manager_id int not null primary key,
 Manu_name varchar(255) not null,
@@ -50,6 +49,8 @@ Quantity int not null,
 Added_By int not null, 
 Removed_by int, 
 Supplier varchar(255),
+FOREIGN KEY (Added_by) REFERENCES MANAGERS(managers_id),
+FOREIGN KEY (Removed_by) REFERENCES MANAGERS(managers_id),
 FOREIGN KEY (Supplier) REFERENCES MANUFACTURER(Name)
 );
 
@@ -82,4 +83,15 @@ FOREIGN KEY (E_id) REFERENCES EMPLOYEE(Username_id),
 FOREIGN KEY (Store_name) REFERENCES STORE(Name)
 );
 
-SHOW TABLES;
+INSERT INTO LOCATION (Country, Province, City) VALUES ('Canada', 'Alberta', 'Calgary');
+INSERT INTO STORE (Name, Location) VALUES ('Our Store', 1);
+INSERT INTO MANAGERS(store) VALUES ('Our Store');
+INSERT INTO EMPLOYEE (Username_id, Password, Name, Hired_by) VALUES ('pmadill', '1234', 'Philippa', 1);
+INSERT INTO MANUFACTURER(Name, Supplies_by, Request_by) VALUES ('Supplier', 1, 1);
+INSERT INTO REQUEST (Manager_id, Manu_name) VALUES (1, 'Supplier');
+INSERT INTO PRODUCT (Price, Quantity, Added_by, Supplier) VALUES (3.99, 10, 1, 'Supplier');
+INSERT INTO PRODUCT (Price, Quantity, Added_by, Supplier) VALUES (20, 15, 1, 'Supplier');
+INSERT INTO PRODUCT (Price, Quantity, Added_by, Supplier) VALUES (34.99, 7, 1, 'Supplier');
+INSERT INTO BOOK(Product_id, Title, Author, Genre) VALUES (1, 'Pride and Prejudice', 'Jane Austen', 'Classic');
+INSERT INTO CLOTHING(Product_id, Size, Colour, Style) VALUES (3, 'M', 'Blue', 'Shirt');
+INSERT INTO WORKS_AT(E_id, Store_name) VALUES ('pmadill', 'Our Store');
