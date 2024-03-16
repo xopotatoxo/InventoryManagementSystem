@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Management System</title>
+</head>
+<body>
+    <h1>Welcome to the Inventory Management</h1>
+    
+    <!-- Homepage -->
+    <div id="homepage">
+        <p>Hello</p>
+        <button onclick="showStoreSelection()">Next</button>
+    </div>
+
+    <!-- Store Selection -->
+    <div id="storeSelection" style="display: none;">
+        <p>Select Store:</p>
+        <select id="storeOptions">
+            <option value="conquerors">The Conquerors</option>
+        </select>
+        <button onclick="showLocationSelection()">Next</button>
+        <button onclick="goBackToHomepage()">Back</button> <!-- Back button -->
+    </div>
+
+    <!-- Location Selection -->
+    <div id="locationSelection" style="display: none;">
+        <p>Select Location:</p>
+        <select id="locationOptions">
+            <option value="calgary">Calgary, Canada</option>
+        </select>
+        <button onclick="showAuthentication()">Next</button>
+        <button onclick="goBackToStoreSelection()">Back</button> <!-- Back button -->
+    </div>
+
+    <!-- Authentication -->
+    <div id="authentication" style="display: none;">
+        <p>Select Authentication:</p>
+        <input type="radio" id="managerAuth" name="auth" value="manager">
+        <label for="managerAuth">Manager</label><br>
+        <input type="radio" id="employerAuth" name="auth" value="employer">
+        <label for="employerAuth">Employer</label><br>
+        <input type="radio" id="productAuth" name="auth" value="product">
+        <label for="productAuth">Store</label><br>
+        <button onclick="showOptions()">Next</button>
+        <button onclick="goBackToLocationSelection()">Back</button> <!-- Back button -->
+    </div>
+
+    <!-- Manager Options -->
+    <div id="managerOptions" style="display: none;">
+        <p>Manager Options:</p>
+        <input type="text" id="managerUsername" placeholder="Username">
+        <input type="password" id="managerPassword" placeholder="Password">
+        <button onclick="authenticateManager()">Verify</button>
+        <button id="verifiedManagerButton" style="display: none;">Verified</button> <!-- New button -->
+        <button id="requestsProducts" style="display: none;">Requests Products</button>
+        <button id="firesEmployees" style="display: none;">Fires Employees</button>
+        <button id="hireEmployees" style="display: none;">Hire Employees</button>
+        <button id="addNewProducts" style="display: none;">Add new products</button>
+        <button id="deleteNoLongerStockedProducts" style="display: none;">Delete no longer stocked products</button>
+        <button onclick="goBackToAuthentication()">Back</button> <!-- Back button -->
+    </div>
+
+    <!-- Employer Options -->
+    <div id="employerOptions" style="display: none;">
+        <p>Employee Options:</p>
+        <input type="text" id="employerUsername" placeholder="Username">
+        <input type="password" id="employerPassword" placeholder="Password">
+        <button onclick="authenticateEmployer()">Verify</button>
+        <button id="verifiedEmployerButton" style="display: none;">Verified</button> <!-- New button -->
+        <button id="editEmployee" style="display: none;">Edit Employee</button>
+        <button id="updateProductQuantity" style="display: none;">Update Product Quantity</button>
+        <button onclick="goBackToAuthentication()">Back</button> <!-- Back button -->
+    </div>
+
+    <!-- Product Options -->
+    <div id="productOptions" style="display: none;">
+        <p>Store Options:</p>
+        <input type="text" id="productUsername" placeholder="Username">
+        <input type="password" id="productPassword" placeholder="Password">
+        <button onclick="authenticateProduct()">Verify</button>
+        <button id="verifiedProductButton" style="display: none;">Verified</button> <!-- New button -->
+        <button id="searchProductID" style="display: none;">Search Product ID</button>
+        <button id="viewQuantity" style="display: none;">View Quantity</button>
+        <button id="updatePrice" style="display: none;">Update Price</button>
+        <button onclick="goBackToAuthentication()">Back</button> <!-- Back button -->
+    </div>
+
+    <script>
+        function showStoreSelection() {
+            document.getElementById('homepage').style.display = 'none';
+            document.getElementById('storeSelection').style.display = 'block';
+        }
+
+        function showLocationSelection() {
+            document.getElementById('storeSelection').style.display = 'none';
+            document.getElementById('locationSelection').style.display = 'block';
+        }
+
+        function showAuthentication() {
+            document.getElementById('locationSelection').style.display = 'none';
+            document.getElementById('authentication').style.display = 'block';
+        }
+
+        function showOptions() {
+            var authType = document.querySelector('input[name="auth"]:checked').value;
+            document.getElementById('authentication').style.display = 'none';
+            if (authType === 'manager') {
+                document.getElementById('managerOptions').style.display = 'block';
+            } else if (authType === 'employer') {
+                document.getElementById('employerOptions').style.display = 'block';
+            } else if (authType === 'product') {
+                document.getElementById('productOptions').style.display = 'block';
+            }
+        }
+
+        function authenticateManager() {
+            var username = document.getElementById('managerUsername').value;
+            var password = document.getElementById('managerPassword').value;
+            // Check if username and password are correct
+            if (username === "123" && password === "123") {
+                document.getElementById('verifiedManagerButton').style.display = 'block'; // Show the verified button
+                document.getElementById('requestsProducts').style.display = 'block';
+                document.getElementById('firesEmployees').style.display = 'block';
+                document.getElementById('hireEmployees').style.display = 'block';
+                document.getElementById('addNewProducts').style.display = 'block';
+                document.getElementById('deleteNoLongerStockedProducts').style.display = 'block';
+            }
+        }
+
+        function authenticateEmployer() {
+            var username = document.getElementById('employerUsername').value;
+            var password = document.getElementById('employerPassword').value;
+            // Check if username and password are correct
+            if (username === "123" && password === "123") {
+                document.getElementById('verifiedEmployerButton').style.display = 'block'; // Show the verified button
+                document.getElementById('editEmployee').style.display = 'block';
+                document.getElementById('updateProductQuantity').style.display = 'block';
+            }
+        }
+
+        function authenticateProduct() {
+            var username = document.getElementById('productUsername').value;
+            var password = document.getElementById('productPassword').value;
+            // Check if username and password are correct
+            if (username === "123" && password === "123") { // Change the condition accordingly
+                document.getElementById('verifiedProductButton').style.display = 'block'; // Show the verified button
+                document.getElementById('searchProductID').style.display = 'block';
+                document.getElementById('viewQuantity').style.display = 'block';
+                document.getElementById('updatePrice').style.display = 'block';
+            }
+        }
+
+        function goBackToHomepage() {
+            document.getElementById('homepage').style.display = 'block';
+            document.getElementById('storeSelection').style.display = 'none';
+        }
+
+        function goBackToStoreSelection() {
+            document.getElementById('storeSelection').style.display = 'block';
+            document.getElementById('locationSelection').style.display = 'none';
+        }
+
+        function goBackToLocationSelection() {
+            document.getElementById('locationSelection').style.display = 'block';
+            document.getElementById('authentication').style.display = 'none';
+        }
+
+        function goBackToAuthentication() {
+            document.getElementById('authentication').style.display = 'block';
+            document.getElementById('managerOptions').style.display = 'none';
+            document.getElementById('employerOptions').style.display = 'none';
+            document.getElementById('productOptions').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
