@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Store Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Acme&family=Amatic+SC:wght@400;700&family=Lilita+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Acme&family=Amatic+SC:wght@400;700&family=Lilita+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">   
+<title>Inventory Management System</title>
 </head>
 <body>
-    <h1>Welcome to the Inventory Management</h1>
+    <h1>Welcome to the Inventory Management System</h1>
     
     <!-- Homepage -->
     <div id="homepage">
-        <p>Hello</p>
+        <p>Click next to proceed to store selection</p>
         <button onclick="showStoreSelection()">Next</button>
     </div>
 
@@ -37,13 +44,16 @@
     <!-- Authentication -->
     <div id="authentication" style="display: none;">
         <p>Select Authentication:</p>
-        <input type="radio" id="managerAuth" name="auth" value="manager">
+        <button onclick="document.getElementById('employeeOptions').style.display = 'block', document.getElementById('authentication').style.display = 'none';">Employee</button>
+        <button onclick="document.getElementById('managerOptions').style.display = 'block', document.getElementById('authentication').style.display = 'none';">Manager</button>
+        <button onclick="document.getElementById('productOptions').style.display = 'block', document.getElementById('authentication').style.display = 'none';">Store</button>
+        <!--<input type="radio" id="managerAuth" name="auth" value="manager">
         <label for="managerAuth">Manager</label><br>
-        <input type="radio" id="employerAuth" name="auth" value="employer">
-        <label for="employerAuth">Employer</label><br>
+        <input type="radio" id="employeeAuth" name="auth" value="employee">
+        <label for="employeeAuth">Employee</label><br>
         <input type="radio" id="productAuth" name="auth" value="product">
         <label for="productAuth">Store</label><br>
-        <button onclick="showOptions()">Next</button>
+        <button onclick="showOptions()">Next</button>-->
         <button onclick="goBackToLocationSelection()">Back</button> <!-- Back button -->
     </div>
 
@@ -55,20 +65,20 @@
         <button onclick="authenticateManager()">Verify</button>
         <button id="verifiedManagerButton" style="display: none;">Verified</button> <!-- New button -->
         <button id="requestsProducts" style="display: none;">Requests Products</button>
-        <button id="firesEmployees" style="display: none;">Fires Employees</button>
+        <button id="fireEmployees" style="display: none;">Fire Employees</button>
         <button id="hireEmployees" style="display: none;">Hire Employees</button>
         <button id="addNewProducts" style="display: none;">Add new products</button>
         <button id="deleteNoLongerStockedProducts" style="display: none;">Delete no longer stocked products</button>
         <button onclick="goBackToAuthentication()">Back</button> <!-- Back button -->
     </div>
 
-    <!-- Employer Options -->
-    <div id="employerOptions" style="display: none;">
+    <!-- Employee Options -->
+    <div id="employeeOptions" style="display: none;">
         <p>Employee Options:</p>
-        <input type="text" id="employerUsername" placeholder="Username">
-        <input type="password" id="employerPassword" placeholder="Password">
-        <button onclick="authenticateEmployer()">Verify</button>
-        <button id="verifiedEmployerButton" style="display: none;">Verified</button> <!-- New button -->
+        <input type="text" id="employeeUsername" placeholder="Username">
+        <input type="password" id="employeePassword" placeholder="Password">
+        <button onclick="authenticateEmployee()">Verify</button>
+        <button id="verifiedEmployeeButton" style="display: none;">Verified</button> <!-- New button -->
         <button id="editEmployee" style="display: none;">Edit Employee</button>
         <button id="updateProductQuantity" style="display: none;">Update Product Quantity</button>
         <button onclick="goBackToAuthentication()">Back</button> <!-- Back button -->
@@ -108,8 +118,8 @@
             document.getElementById('authentication').style.display = 'none';
             if (authType === 'manager') {
                 document.getElementById('managerOptions').style.display = 'block';
-            } else if (authType === 'employer') {
-                document.getElementById('employerOptions').style.display = 'block';
+            } else if (authType === 'employee') {
+                document.getElementById('employeeOptions').style.display = 'block';
             } else if (authType === 'product') {
                 document.getElementById('productOptions').style.display = 'block';
             }
@@ -122,19 +132,19 @@
             if (username === "123" && password === "123") {
                 document.getElementById('verifiedManagerButton').style.display = 'block'; // Show the verified button
                 document.getElementById('requestsProducts').style.display = 'block';
-                document.getElementById('firesEmployees').style.display = 'block';
+                document.getElementById('fireEmployees').style.display = 'block';
                 document.getElementById('hireEmployees').style.display = 'block';
                 document.getElementById('addNewProducts').style.display = 'block';
                 document.getElementById('deleteNoLongerStockedProducts').style.display = 'block';
             }
         }
 
-        function authenticateEmployer() {
-            var username = document.getElementById('employerUsername').value;
-            var password = document.getElementById('employerPassword').value;
+        function authenticateEmployee() {
+            var username = document.getElementById('employeeUsername').value;
+            var password = document.getElementById('employeePassword').value;
             // Check if username and password are correct
             if (username === "123" && password === "123") {
-                document.getElementById('verifiedEmployerButton').style.display = 'block'; // Show the verified button
+                document.getElementById('verifiedEmployeeButton').style.display = 'block'; // Show the verified button
                 document.getElementById('editEmployee').style.display = 'block';
                 document.getElementById('updateProductQuantity').style.display = 'block';
             }
@@ -170,7 +180,7 @@
         function goBackToAuthentication() {
             document.getElementById('authentication').style.display = 'block';
             document.getElementById('managerOptions').style.display = 'none';
-            document.getElementById('employerOptions').style.display = 'none';
+            document.getElementById('employeeOptions').style.display = 'none';
             document.getElementById('productOptions').style.display = 'none';
         }
     </script>
