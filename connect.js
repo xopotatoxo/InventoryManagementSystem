@@ -211,7 +211,7 @@ app.post("/REQUEST", (req, res) => {
 // POST Create Product
 app.post("/PRODUCT", (req, res) => {
   const { Price, Quantity, Added_by, Removed_by, Supplier } = req.body; // Extract values from request body
-  const q = `INSERT INTO PRODUCT (Price, Quantity, Added_by, Removed_by, Supplier) VALUES ('${Price}', '${Quantity}', '${Added_by}', '${Removed_by}', '${Supplier}')`;
+  const q = `INSERT INTO PRODUCT (Price, Quantity, Added_by, Supplier) VALUES ('${Price}', '${Quantity}', '${Added_by}', '${Supplier}')`;
 
   db.query(q, (err, data) => {
     if (err) {

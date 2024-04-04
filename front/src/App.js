@@ -11,8 +11,8 @@ function App() {
       <BrowserRouter>
       <Routes>
       <Route path='/location' element={<Location />} /> {/* Use appropriate paths for Employee and Manager */}
-          <Route path='/manager' element={<Manager />} />
-          <Route path='/ims' element={<InventoryManagementSystem />} /> {/* Set the root path to use InventoryManagementSystem */}
+      <Route path='/manager' element={<Manager />} />
+      <Route path='/ims' element={<InventoryManagementSystem />} /> {/* Set the root path to use InventoryManagementSystem */}
       </Routes>
       </BrowserRouter>
     </div>
