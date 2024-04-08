@@ -1,0 +1,78 @@
+/* Reset default styles */
+.acme-regular {
+    font-family: "Acme", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  
+  .poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    text-align: center;
+}
+
+h1{
+    font-family: 'Acme', sans-serif;
+    font-size: 10vh;
+    color: #250265
+}
+p, input, button, select{
+    font-family: 'Poppins', sans-serif;
+}
+
+select, input{
+    background-color: #ffffff;
+    border-radius: 5em;
+    font-size: 1rem;
+}
+/* Add your custom styles here */
+button{
+    background-color: #250265;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5em;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.productOptions{
+    text-align: center;
+    align-items: center;
+}
+
+button:hover{
+    background-color: #4b02d1;
+}
