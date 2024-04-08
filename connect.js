@@ -94,6 +94,16 @@ app.get("/PRODUCT", (req, res) => {
   });
 });
 
+app.get("/BOOK", (req, res) => {
+  db.query("SELECT * FROM BOOK", function(err, data) {
+    if (err) {
+      console.error("Error executing SQL query:", err);
+      return res.status(500).json({ error: 'Error executing SQL query' });
+    }
+    return res.json(data);
+  });
+});
+
 app.get("/FOOD", (req, res) => {
   db.query("SELECT * FROM FOOD", function(err, data) {
     if (err) {
@@ -224,17 +234,20 @@ app.post("/PRODUCT", (req, res) => {
 
 // POST Create Book
 app.post("/BOOK", (req, res) => {
-  const { Product_id, Title, Author, Genre } = req.body; // Extract values from request body
-  const q = `INSERT INTO BOOK (Product_id, Title, Author, Genre) VALUES ('${Product_id}', '${Title}', '${Author}', '${Genre}')`;
+  const { product_id, title, author, genre } = req.body; // Extract values from request body
+  const q = 'INSERT INTO BOOK (Product_id, Title, Author, Genre) VALUES (?, ?, ?, ?)';
+  const values = [product_id, title, author, genre];
 
-  db.query(q, (err, data) => {
+  db.query(q, values, (err, results) => {
     if (err) {
       console.error("Error executing SQL query:", err);
       return res.status(500).json({ error: 'Error executing SQL query' });
     }
-    return res.json(data);
+    // Optionally, you might return the newly created book's ID or some other information
+    return res.json({ message: 'Book added successfully', bookId: results.insertId });
   });
 });
+
 
 // POST Create Food
 app.post("/FOOD", (req, res) => {

@@ -53,7 +53,6 @@ CREATE TABLE PRODUCT (
     Price FLOAT NOT NULL,
     Quantity INT NOT NULL,
     Added_By INT NOT NULL, 
-    Removed_by INT, 
     Supplier VARCHAR(255),
     FOREIGN KEY (Added_by) REFERENCES MANAGERS(managers_id),
     FOREIGN KEY (Removed_by) REFERENCES MANAGERS(managers_id),

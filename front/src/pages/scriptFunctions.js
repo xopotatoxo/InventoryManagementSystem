@@ -26,15 +26,21 @@ export default {
         }
     },
 
+    
     authenticateManager() {
         var username = document.getElementById('managerUsername').value;
         var password = document.getElementById('managerPassword').value;
         // Check if username and password are correct
         if (username === "123" && password === "123") {
             document.getElementById('verifiedManagerButton').style.display = 'block'; // Show the verified button
-            document.getElementById('requestsProducts').style.display = 'block';
+            document.getElementById('displayEmployees').style.display = 'block';
             document.getElementById('fireEmployees').style.display = 'block';
             document.getElementById('hireEmployees').style.display = 'block';
+            document.getElementById('viewAllProducts').style.display = 'block';
+            document.getElementById('viewBooks').style.display = 'block';
+            document.getElementById('viewFood').style.display = 'block';
+            document.getElementById('viewClothing').style.display = 'block';
+            document.getElementById('requestProducts').style.display = 'block';
             document.getElementById('addNewProducts').style.display = 'block';
             document.getElementById('deleteNoLongerStockedProducts').style.display = 'block';
         }
@@ -44,18 +50,18 @@ export default {
         var username = document.getElementById('employeeUsername').value;
         var password = document.getElementById('employeePassword').value;
         // Check if username and password are correct
-        if (username === "123" && password === "123") {
+        if (username === "456" && password === "456") {
             document.getElementById('verifiedEmployeeButton').style.display = 'block'; // Show the verified button
-            document.getElementById('editEmployee').style.display = 'block';
-            document.getElementById('updateProductQuantity').style.display = 'block';
+            document.getElementById('editEmployeeButton').style.display = 'block';
+            document.getElementById('updateProductQuantityButton').style.display = 'block';
         }
-    },
+    },    
 
     authenticateProduct() {
         var username = document.getElementById('productUsername').value;
         var password = document.getElementById('productPassword').value;
         // Check if username and password are correct
-        if (username === "123" && password === "123") { // Change the condition accordingly
+        if (username === "789" && password === "789") { // Change the condition accordingly
             document.getElementById('verifiedProductButton').style.display = 'block'; // Show the verified button
             document.getElementById('searchProductID').style.display = 'block';
             document.getElementById('viewQuantity').style.display = 'block';
@@ -85,4 +91,5 @@ export default {
         document.getElementById('productOptions').style.display = 'none';
     }
 
+    // Define other functions as needed
 };
