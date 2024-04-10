@@ -27,11 +27,15 @@ const AddProduct = () => {
             const response = await axios.post("http://localhost:8800/PRODUCT", product);
             const productId = response.data.productId; // Assuming the server returns the product ID
             console.log("Product ID:", productId); // Printing the generated product ID
-            navigate("/ab", { state: { productId } }); // Navigating to addBook.jsx with product ID
+            navigate("/sp", { state: { productId } }); // Navigating to addBook.jsx with product ID
         } catch (err) {
             console.log(product);
             console.log(err);
         }
+    };
+
+    const handleBack = () => {
+        navigate("/mg");
     };
 
     return (
@@ -42,6 +46,7 @@ const AddProduct = () => {
             <p>Please enter the quantity of the product you wish to add.</p>
             <input type="number" id="Quantity" placeholder="Product Quantity" value={product.Quantity} onChange={handleChange} />
             <button onClick={handleClick}>Add</button>
+            <div><button onClick={handleBack}>Back</button></div>
         </div>
     );
 };

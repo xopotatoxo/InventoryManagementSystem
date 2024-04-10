@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './style.css';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const AddBook = () => {
-    const location = useLocation();
+const AddClothing = () => {
     const navigate = useNavigate();
 
     // Initialize lastProductId state
@@ -25,18 +24,18 @@ const AddBook = () => {
         fetchLastProductId();
     }, []);
 
-    // Initialize book state with empty values, setting Product_id with lastProductId
-    const [book, setBook] = useState({
+    // Initialize clothing state with empty values, setting Product_id with lastProductId
+    const [clothing, setClothing] = useState({
         Product_id: lastProductId, 
-        Title: '', 
-        Author: '', 
-        Genre: ''
+        Size: '', 
+        Colour: '', 
+        Style: ''
     });
 
-    // Update book state when any input field changes
+    // Update clothing state when any input field changes
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setBook((prev) => ({
+        setClothing((prev) => ({
             ...prev,
             [id]: value
         }));
@@ -46,8 +45,8 @@ const AddBook = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            // Send a POST request to add the book
-            await axios.post("http://localhost:8800/BOOK", book);
+            // Send a POST request to add the clothing
+            await axios.post("http://localhost:8800/CLOTHING", clothing);
             // Navigate back to the homepage after successful addition
             navigate("/ims");
         } catch (err) {
@@ -57,7 +56,7 @@ const AddBook = () => {
     
     return (
         <div className='form'>
-            <h2>Add New Book:</h2>
+            <h2>Add New Clothing:</h2>
             {/* Display the last generated Product_id */}
             <p>Last Generated Product ID: {lastProductId}</p>
             {/* Use the received product ID in the input field */}
@@ -66,31 +65,31 @@ const AddBook = () => {
                 id="Product_id" 
                 placeholder="Product ID"
                 onChange={handleChange}
-                value={book.Product_id} 
+                value={clothing.Product_id} 
             />
-            <p>Please enter the title of the book you wish to add.</p>
+            <p>Please enter the size of the clothing you wish to add.</p>
             <input 
                 type="text" 
-                id="Title" 
-                placeholder="Book Title" 
+                id="Size" 
+                placeholder="Clothing Size" 
                 onChange={handleChange} 
-                value={book.Title}
+                value={clothing.Size}
             />
-            <p>Please enter the author of the book you wish to add.</p>
+            <p>Please enter the colour of the clothing you wish to add.</p>
             <input 
                 type="text" 
-                id="Author" 
-                placeholder="Book Author" 
+                id="Colour" 
+                placeholder="Clothing Colour" 
                 onChange={handleChange} 
-                value={book.Author}
+                value={clothing.Colour}
             />
-            <p>Please enter the genre of the book you wish to add.</p>
+            <p>Please enter the style of the clothing you wish to add.</p>
             <input 
                 type="text" 
-                id="Genre" 
-                placeholder="Book Genre" 
+                id="Style" 
+                placeholder="Clothing Style" 
                 onChange={handleChange} 
-                value={book.Genre}
+                value={clothing.Style}
             />
             {/* Button to submit the form */}
             <button onClick={handleClick}>Add</button>
@@ -98,4 +97,4 @@ const AddBook = () => {
     );
 };
 
-export default AddBook;
+export default AddClothing;

@@ -57,7 +57,7 @@ export default {
         }
     },    
 
-    authenticateProduct() {
+    authenticateStore() {
         var username = document.getElementById('productUsername').value;
         var password = document.getElementById('productPassword').value;
         // Check if username and password are correct
