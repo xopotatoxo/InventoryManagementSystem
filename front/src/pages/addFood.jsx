@@ -3,7 +3,7 @@ import axios from 'axios';
 import './style.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const AddBook = () => {
+const AddFood = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -25,18 +25,16 @@ const AddBook = () => {
         fetchLastProductId();
     }, []);
 
-    // Initialize book state with empty values, setting Product_id with lastProductId
-    const [book, setBook] = useState({
+    // Initialize food state with empty values, setting Product_id with lastProductId
+    const [food, setFood] = useState({
         Product_id: lastProductId, 
-        Title: '', 
-        Author: '', 
-        Genre: ''
+        Expiration: ''
     });
 
-    // Update book state when any input field changes
+    // Update food state when any input field changes
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setBook((prev) => ({
+        setFood((prev) => ({
             ...prev,
             [id]: value
         }));
@@ -46,8 +44,10 @@ const AddBook = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            // Send a POST request to add the book
-            await axios.post("http://localhost:8800/BOOK", book);
+            // Ensure that Product_id is parsed as a number
+            const parsedProductId = parseInt(food.Product_id);
+            // Send a POST request to add the food
+            await axios.post("http://localhost:8800/FOOD", { ...food, Product_id: parsedProductId });
             // Navigate back to the homepage after successful addition
             navigate("/ims");
         } catch (err) {
@@ -57,7 +57,7 @@ const AddBook = () => {
     
     return (
         <div className='form'>
-            <h2>Add New Book:</h2>
+            <h2>Add New Food:</h2>
             {/* Display the last generated Product_id */}
             <p>Last Generated Product ID: {lastProductId}</p>
             {/* Use the received product ID in the input field */}
@@ -66,31 +66,15 @@ const AddBook = () => {
                 id="Product_id" 
                 placeholder="Product ID"
                 onChange={handleChange}
-                value={book.Product_id} 
+                value={food.Product_id} 
             />
-            <p>Please enter the title of the book you wish to add.</p>
+            <p>Please enter the expiration date of the food you wish to add.</p>
             <input 
                 type="text" 
-                id="Title" 
-                placeholder="Book Title" 
+                id="Expiration" 
+                placeholder="Expiration Date" 
                 onChange={handleChange} 
-                value={book.Title}
-            />
-            <p>Please enter the author of the book you wish to add.</p>
-            <input 
-                type="text" 
-                id="Author" 
-                placeholder="Book Author" 
-                onChange={handleChange} 
-                value={book.Author}
-            />
-            <p>Please enter the genre of the book you wish to add.</p>
-            <input 
-                type="text" 
-                id="Genre" 
-                placeholder="Book Genre" 
-                onChange={handleChange} 
-                value={book.Genre}
+                value={food.Expiration}
             />
             {/* Button to submit the form */}
             <button onClick={handleClick}>Add</button>
@@ -98,4 +82,4 @@ const AddBook = () => {
     );
 };
 
-export default AddBook;
+export default AddFood;

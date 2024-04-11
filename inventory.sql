@@ -28,9 +28,7 @@ CREATE TABLE EMPLOYEE (
     Password VARCHAR(255) NOT NULL,
     Name VARCHAR(255) NOT NULL,
     Hired_by INT NOT NULL,
-    Fired_by INT,
     FOREIGN KEY (Hired_by) REFERENCES MANAGERS(managers_id),
-    FOREIGN KEY (Fired_by) REFERENCES MANAGERS(managers_id)
 );
 
 CREATE TABLE MANUFACTURER (

@@ -22,12 +22,14 @@ app.get("/", (req, res)=>{
 
 
 app.get("/LOCATION", (req, res) => {
+  console.log("Request received for /LOCATION route");
   const q = "SELECT * FROM LOCATION";
   db.query(q, function(err, data) {
     if (err){
       console.error("Error executing SQL query:", err);
       return res.json(err);
     }
+    console.log("Query results:", data);
     return res.json(data);
   });
 });
@@ -82,38 +84,8 @@ app.get("/REQUEST", (req, res) => {
   });
 });
 
-
-// GET Product by ID
-// GET a single product by ID
-// GET a single product by ID
-app.get("/PRODUCT/:id", (req, res) => {
-  const productId = req.params.id;
-  const q = "SELECT * FROM PRODUCT WHERE Product_id = ?";
-  db.query(q, [productId], (err, data) => {
-    if (err) {
-      console.error("Error executing SQL query:", err);
-      return res.status(500).json({ error: 'Error executing SQL query' });
-    }
-    return res.json(data);
-  });
-});
-
-// GET all products
 app.get("/PRODUCT", (req, res) => {
-  const q = "SELECT * FROM PRODUCT";
-  db.query(q, (err, data) => {
-    if (err) {
-      console.error("Error executing SQL query:", err);
-      return res.status(500).json({ error: 'Error executing SQL query' });
-    }
-    return res.json(data);
-  });
-});
-
-
-
-app.get("/BOOK", (req, res) => {
-  db.query("SELECT * FROM BOOK", function(err, data) {
+  db.query("SELECT * FROM PRODUCT", function(err, data) {
     if (err) {
       console.error("Error executing SQL query:", err);
       return res.status(500).json({ error: 'Error executing SQL query' });
@@ -197,7 +169,7 @@ app.post("/MANAGERS", (req, res) => {
 // POST Create Employee
 app.post("/EMPLOYEE", (req, res) => {
   const { Username_id, Password, Name, Hired_by, Fired_by } = req.body; // Extract values from request body
-  const q = `INSERT INTO EMPLOYEE (Username_id, Password, Name, Hired_by) VALUES ('${Username_id}', '${Password}', '${Name}', '${Hired_by}')`;
+  const q = `INSERT INTO EMPLOYEE (Username_id, Password, Name, Hired_by, Fired_by) VALUES ('${Username_id}', '${Password}', '${Name}', '${Hired_by}', '${Fired_by}')`;
 
   db.query(q, (err, data) => {
     if (err) {
@@ -207,7 +179,6 @@ app.post("/EMPLOYEE", (req, res) => {
     return res.json(data);
   });
 });
-
 
 // POST Create Manufacturer
 app.post("/MANUFACTURER", (req, res) => {
@@ -253,20 +224,17 @@ app.post("/PRODUCT", (req, res) => {
 
 // POST Create Book
 app.post("/BOOK", (req, res) => {
-  const { product_id, title, author, genre } = req.body; // Extract values from request body
-  const q = 'INSERT INTO BOOK (Product_id, Title, Author, Genre) VALUES (?, ?, ?, ?)';
-  const values = [product_id, title, author, genre];
+  const { Product_id, Title, Author, Genre } = req.body; // Extract values from request body
+  const q = `INSERT INTO BOOK (Product_id, Title, Author, Genre) VALUES ('${Product_id}', '${Title}', '${Author}', '${Genre}')`;
 
-  db.query(q, values, (err, results) => {
+  db.query(q, (err, data) => {
     if (err) {
       console.error("Error executing SQL query:", err);
       return res.status(500).json({ error: 'Error executing SQL query' });
     }
-    // Optionally, you might return the newly created book's ID or some other information
-    return res.json({ message: 'Book added successfully', bookId: results.insertId });
+    return res.json(data);
   });
 });
-
 
 // POST Create Food
 app.post("/FOOD", (req, res) => {
@@ -309,126 +277,6 @@ app.post("/WORKS_AT", (req, res) => {
     return res.json(data);
   });
 });
-
-
-app.delete("/BOOK/:id", (req, res) => {
-  console.log("DELETE request received for product ID:", req.params.id); // Log the incoming product ID
-  const productId = req.params.id;
-  const q = "DELETE FROM BOOK WHERE Product_id=?";
-
-  db.query(q, [productId], (err, results) => {
-    if (err) {
-      console.error("Error executing SQL query:", err);
-      return res.status(500).json({ error: 'Error executing SQL query' });
-    }
-    return res.json("Successfully deleted the product");
-  });
-});
-
-
-app.delete("/FOOD/:id", (req, res)=>{
-  console.log("DELETE request received for product ID:", req.params.id); // Log the incoming product ID
-  const productId = req.params.id;
-  const q = "DELETE FROM FOOD WHERE Product_id=?";
-
-  db.query(q, [productId], (err, results) =>{
-
-    if(err) {
-      console.error("Error executing SQL query:", err);
-      return res.status(500).json({ error: 'Error executing SQL query' });
-    }
-    return res.json("Successfully deleted the product");
-  });
-});
-
-app.delete("/CLOTHING/:id", (req, res)=>{
-  console.log("DELETE request received for clothing ID:", req.params.id); // Log the incoming clothing ID
-  const clothingId = req.params.id;
-  const q = "DELETE FROM CLOTHING WHERE Product_id=?"; // Corrected query to delete from the CLOTHING table
-
-  db.query(q, [clothingId], (err, results) =>{
-
-    if(err) {
-      console.error("Error executing SQL query:", err);
-      return res.status(500).json({ error: 'Error executing SQL query' });
-    }
-    return res.json("Successfully deleted the clothing");
-  });
-});
-
-
-
-app.delete("/PRODUCT/:id", (req, res)=>{
-  console.log("DELETE request received for product ID:", req.params.id); // Log the incoming product ID
-  const productId = req.params.id;
-  const q = "DELETE FROM  PRODUCT WHERE Product_id=?";
-
-  db.query(q, [productId], (err, results) =>{
-
-    if(err) {
-      console.error("Error executing SQL query:", err);
-      return res.status(500).json({ error: 'Error executing SQL query' });
-    }
-    return res.json("Successfully deleted the product");
-  });
-});
-
-
-app.delete("/EMPLOYEE/:id", (req, res) => {
-  console.log("DELETE request received for employee ID:", req.params.id); // Log the incoming employee ID
-  const employeeId = req.params.id;
-  const q = "DELETE FROM EMPLOYEE WHERE Username_id=?";
-
-  db.query(q, [employeeId], (err, results) => {
-      if (err) {
-          console.error("Error executing SQL query:", err);
-          return res.status(500).json({ error: 'Error executing SQL query' });
-      }
-      if (results.affectedRows === 0) {
-          return res.status(404).json({ error: 'Employee not found' });
-      }
-      return res.json({ message: "Successfully deleted the employee" });
-  });
-});
-
-// Update Employee
-app.patch("/EMPLOYEE/:id", (req, res) => {
-  const employeeId = req.params.id;
-  const { Name, Password } = req.body;
-
-  const q = "UPDATE EMPLOYEE SET Name=?, Password=? WHERE Username_id=?";
-
-  db.query(q, [Name, Password, employeeId], (err, results) => {
-    if (err) {
-      console.error("Error executing SQL query:", err);
-      return res.status(500).json({ error: 'Error executing SQL query' });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ error: 'Employee not found' });
-    }
-    return res.json({ message: "Successfully updated the employee" });
-  });
-});
-
-// Update Product
-app.patch("/PRODUCT/:id", (req, res) => {
-  const productId = req.params.id;
-  const { Price, Quantity } = req.body;
-
-  const q = "UPDATE PRODUCT SET Price=?, Quantity=? WHERE Product_id=?";
-
-  db.query(q, [Price, Quantity, productId], (err, results) => {
-    if (err) {
-      console.error("Error executing SQL query:", err);
-      return res.status(500).json({ error: 'Error executing SQL query' });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ error: 'Product not found' });
-    }
-    return res.json({ message: "Successfully updated the product" });
-  });
-});
-
 
 
 app.listen(port, () => {

@@ -57,7 +57,7 @@ select, input{
 }
 /* Add your custom styles here */
 button{
-    background-color: #250265;
+    background-color: #d108d1;
     color: white;
     padding: 10px 20px;
     border-radius: 5em;
@@ -74,5 +74,5 @@ button{
 }
 
 button:hover{
-    background-color: #4b02d1;
+    background-color: #540379;
 }
