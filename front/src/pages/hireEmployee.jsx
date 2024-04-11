@@ -47,7 +47,7 @@ const AddEmployee = () => {
     const handleClick = async () => {
         try {
             await axios.post("http://localhost:8800/EMPLOYEE", employee);
-            navigate("/ims"); // Navigate to success page after employee creation
+            window.location.reload();
         } catch (err) {
             console.error("Error adding employee:", err);
         }

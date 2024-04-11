@@ -37,7 +37,7 @@ const UpdateProduct = () => {
     };
 
     const handleBack = () => {
-        navigate("/ims");
+        navigate("/str");
     };
 
     return (

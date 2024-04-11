@@ -16,6 +16,8 @@ import UpdateProduct from './pages/updateProduct';
 import ProductDetails from  './pages/searchProduct';
 import AddRequest from './pages/addRequest';
 import Manager from './pages/manager';
+import Employee from  "./pages/employee";
+import Store from "./pages/store";
 
 
 function App() {
@@ -38,6 +40,8 @@ function App() {
       <Route path='/sa' element={<ProductDetails />} />
       <Route path='/ar' element={<AddRequest />} />
       <Route path='/mg' element={<Manager />} />
+      <Route path = '/ee' element={<Employee/>} />
+      <Route path= "/str" element={<Store/>} />
 
       </Routes>
       </BrowserRouter>

@@ -25,7 +25,7 @@ const ProductDetails = () => {
     };
 
     const handleBack = () => {
-        navigate("/ims");
+        navigate("/str");
     };
 
     const renderValue = (value) => {

@@ -36,7 +36,7 @@ const UpdateEmployee = () => {
     };
 
     const handleBack = () => {
-        navigate("/ims");
+        navigate("/ee");
     };
 
     return (

@@ -42,7 +42,7 @@ const AddRequest = () => {
     const handleClick = async () => {
         try {
             await axios.post("http://localhost:8800/MANUFACTURER", manufacturer);
-            navigate("/ims"); 
+            window.location.reload();
         } catch (err) {
             console.log(err);
         }

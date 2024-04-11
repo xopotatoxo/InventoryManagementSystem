@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './style.css';
-import scriptFunctions from './scriptFunctions'; 
 import { Link } from 'react-router-dom';
 
 const InventoryManagementSystem = () => {
@@ -117,7 +116,6 @@ const InventoryManagementSystem = () => {
     
     
     const handleProductVerification = () => {
-        //product verification logic here
         console.log('Product verification');
     };
 
@@ -178,7 +176,7 @@ const InventoryManagementSystem = () => {
 
             <div id="managerSuccess" style={{ display: currentPage === 'managerSuccess' ? 'block' : 'none' }}>
                 <h2 id="verifiedManagerButton" ref={verifiedManagerButtonRef}>Verified</h2>
-                <p><button><Link to="/mg">'Proceed as Manager'</Link></button></p>
+                <p><button><Link to="/mg">Proceed as Manager</Link></button></p>
                 <p><button onClick={() => showPage('authentication')}>Log out</button></p>
             </div>
 
@@ -203,8 +201,8 @@ const InventoryManagementSystem = () => {
 
             <div id="employeeSuccess" style={{ display: currentPage === 'employeeSuccess' ? 'block' : 'none' }}>
                 <h2 id="verifiedEmployeeButton" ref={verifiedEmployeeButtonRef}>Verified</h2>
-                <button><Link to="/ue">'Update Employee Information'</Link></button>
-                <button onClick={() => showPage('authentication')}>Log out</button>
+                <p><button><Link to="/ee">Proceed as Employee</Link></button></p>
+                <p><button onClick={() => showPage('authentication')}>Log out</button></p>
             </div>
 
     
@@ -219,9 +217,8 @@ const InventoryManagementSystem = () => {
             </div>
 
             <div id="storeSuccess" style={{ display: currentPage === 'storeSuccess' ? 'block' : 'none' }}>
-                <button><Link to="/sa">'Search Product'</Link></button>
-                <button><Link to="/up">'Update Product Information'</Link></button>
-                <button onClick={() => showPage('authentication')}>Log out</button>
+                <p><button><Link to="/str">Proceed</Link></button></p>
+                <p><button onClick={() => showPage('authentication')}>Log out</button></p>
             </div>
         </div>
     );

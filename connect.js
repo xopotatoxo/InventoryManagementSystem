@@ -84,10 +84,12 @@ app.get("/REQUEST", (req, res) => {
 
 
 // GET Product by ID
+// GET a single product by ID
+// GET a single product by ID
 app.get("/PRODUCT/:id", (req, res) => {
   const productId = req.params.id;
-  const q = `SELECT * FROM PRODUCT WHERE Product_id = ?`;
-  db.query(q, [productId], function(err, data) {
+  const q = "SELECT * FROM PRODUCT WHERE Product_id = ?";
+  db.query(q, [productId], (err, data) => {
     if (err) {
       console.error("Error executing SQL query:", err);
       return res.status(500).json({ error: 'Error executing SQL query' });
@@ -95,6 +97,19 @@ app.get("/PRODUCT/:id", (req, res) => {
     return res.json(data);
   });
 });
+
+// GET all products
+app.get("/PRODUCT", (req, res) => {
+  const q = "SELECT * FROM PRODUCT";
+  db.query(q, (err, data) => {
+    if (err) {
+      console.error("Error executing SQL query:", err);
+      return res.status(500).json({ error: 'Error executing SQL query' });
+    }
+    return res.json(data);
+  });
+});
+
 
 
 app.get("/BOOK", (req, res) => {
