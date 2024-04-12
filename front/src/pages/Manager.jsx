@@ -30,11 +30,11 @@ const Manager = () => {
     return (
         <div>
         <h2>Verified Manager Page</h2>
-        <p><button onClick={handleNewEmployee}>'Hire New Employee'</button></p>
-        <p><button onClick={handleFire}>'Fire Existing Employee'</button></p>
-        <p><button onClick={handleNewProduct}>'Add New Product'</button></p>
-        <p><button onClick={handleNewRequest}>'Request New Product'</button></p>
-        <p><button onClick={handleDeleteProduct}>'Delete No Longer Stocked Products'</button></p>
+        <p><button onClick={handleNewEmployee}>Hire New Employee</button></p>
+        <p><button onClick={handleFire}>Fire Existing Employee</button></p>
+        <p><button onClick={handleNewProduct}>Add New Product</button></p>
+        <p><button onClick={handleNewRequest}>Request New Product</button></p>
+        <p><button onClick={handleDeleteProduct}>Delete No Longer Stocked Products</button></p>
         <div><button onClick={handleBack}>Log Out</button></div>
         </div>
     )
